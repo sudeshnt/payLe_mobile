@@ -1,0 +1,40 @@
+
+<ion-view cache-view="false">
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <div class="row fixed-margin-above-80 ">
+    <span class="margin-lr-auto title-bar">{{title}}</span>
+  </div>
+  <ion-content class="fixed-margin-above-110" style="margin-bottom:  70px;">
+    <div class="row" style="padding: 0px 2px 0px 2px;">
+      <div class="col gallery-col" ng-repeat="(column, images) in galleryColumns" >
+        <img ng-repeat="image in images" ng-src="{{image.src}}" ng-click="showImages(image.index)" class="image-list-thumb" style="margin-bottom: -3px;"/>
+      </div>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer" style="height: 70px;" ng-if="accessType=='merchant'">
+    <div class="row display-inline" style="text-align:right;direction:ltr">
+      <!--<div class="row bar bar-header bar-light" style="direction: ltr;">-->
+        <div class="gallery-upload-button">
+          <div class="row">
+            <div class="col col-60" style="line-height: 43px;">{{'UPLOAD_NEW_IMAGE' | translate}}</div>
+            <div class="col col-30" style="width:200px; height: 55px; display: inline-flex;">
+              <a class="col button icon ion-upload social-share-button-black " ng-hide="frontUploadClicked" ng-click="uploadCLicked()" style="background:#e6e6e6;"></a>
+              <a class="col button icon ion-images social-share-button-black sample-show-hide" ng-show="frontUploadClicked" ng-click="takePicture('gallery')" style="background:#e6e6e6; max-width: 50%;"></a>
+              <a class="col button icon ion-camera social-share-button-black sample-show-hide" ng-show="frontUploadClicked" ng-click="takePicture('camera')" style="background:#e6e6e6; max-width: 50%;"></a>
+            </div>
+          </div>
+        </div>
+      <!--</div>-->
+    </div>
+  </div>
+</ion-view>
+
+<!--<ion-pane>-->
+  <!--<ion-header-bar class="bar-stable">-->
+    <!--<h1 class="title">Devdactic Image Gallery</h1>-->
+  <!--</ion-header-bar>-->
+  <!--<ion-content class="has-header padding" >-->
+
+
+  <!--</ion-content>-->
+<!--</ion-pane>-->

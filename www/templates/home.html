@@ -1,0 +1,52 @@
+<ion-view>
+  <ion-content>
+    <div class="row">
+      <div class="col align-center">
+        <img src="img/payleLogo.png" style="width:100%; max-width:300px;">
+      </div>
+    </div>
+    <!--<div style="text-align: center; width: 100%;"><img src="img/payleLogo.png"></div>-->
+    <!--<div class="row display-inline" style="text-align: right; direction: ltr">
+      <button class="button button-clear button-positive language-buttons" ng-class="language=='en'?'language-selected':''" ng-click="toggleLang('en')">
+        <img src="img/en.png" class="full-height" style="padding: 0px 2px 0px 2px !important">
+      </button>
+      <button class="button button-clear button-positive language-buttons" ng-class="language=='ar'?'language-selected':''" ng-click="toggleLang('ar')">
+        <img src="img/ar.png" class="full-height" style="padding: 0px 2px 0px 2px !important">
+      </button>
+      &lt;!&ndash;<button class="button language-buttons" ng-click="toggleLang('en')"><img src="img/en.png" class="full-height"></button>&ndash;&gt;
+      &lt;!&ndash;<button class="button language-buttons" ng-click="toggleLang('ar')"><img src="img/ar.png" class="full-height"></button>&ndash;&gt;
+    </div>-->
+    <div class="row fixed-margin-above-50">
+      <div class="col" style="max-width: 400px; margin-left: auto;">
+        <div class="card" ng-click="openCustomerHomePage()">
+          <img src="img/customers.png" class="full-width">
+          <!--<div class="item item-text-wrap">
+            This is a basic Card which contains an item that has wrapping text.
+          </div>-->
+        </div>
+        <div class="align-center">{{"CUSTOMERS" | translate}}</div>
+      </div>
+      <div class="col" style="max-width: 400px; margin-right: auto;">
+        <div class="card" ng-click="openMerchantHomePage()">
+          <img src="img/merchants.png" class="full-width">
+          <!--<div class="item item-text-wrap">
+            This is a basic Card which contains an item that has wrapping text.
+          </div>-->
+        </div>
+        <div class="align-center">{{"MERCHANTS" | translate}}</div>
+      </div>
+    </div>
+    <div class="align-center" style="direction: ltr">
+      <div class="align-center half-width">
+        <a name="login" class="button button-block custom-height-button full-width" ng-show="language=='ar'" ng-click="toggleLang('en')" style="height: 30px; background-color: #1e5969; color:white;">
+          <span><img src="img/en.png" class="full-height flag-buttons"></span>{{"LANGUAGE" | translate}}
+        </a>
+      </div>
+      <div class="align-center half-width">
+        <a name="login" class="button button-block custom-height-button full-width" ng-show="language=='en'" ng-click="toggleLang('ar')" style="height: 30px; background-color: #1e5969; color:white;">
+          <span><img src="img/ar.png" class="full-height flag-buttons"></span>{{"LANGUAGE" | translate}}
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

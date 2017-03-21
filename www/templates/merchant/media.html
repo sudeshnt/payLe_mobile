@@ -1,0 +1,14 @@
+<ion-view cache-view="false">
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <div class="row fixed-margin-above-80">
+    <span class="margin-lr-auto title-bar">{{title}}</span>
+  </div>
+  <ion-content class="fixed-margin-above-110">
+    <div ng-repeat="video in media" class="card" style="padding: 1%">
+      {{video.title}}
+      <div class="video-container" style="margin-top: 2%;">
+        <youtube-video video-id="video.videoId" player="player1" player-width="'100%'" player-height="'300px'" player-vars="playerVars"></youtube-video>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

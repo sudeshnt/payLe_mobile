@@ -1,0 +1,18 @@
+<ion-view cache-view="false">
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <div class="row fixed-margin-above-80">
+    <span class="margin-lr-auto title-bar">{{title}}</span>
+  </div>
+  <ion-content class="fixed-margin-above-110">
+    <div class="list list-inset margin-lr-auto" style="max-width: 400px;">
+      <div class="row align-center" ng-repeat="flag_row in flag_rows">
+        <div class="col align-center long-width" ng-repeat="region in flag_row">
+          <a class="full-width"  ng-click="openRegisterPage(region)">
+            <img ng-src="img/flags/{{region.regionCode}}.png" style="height: 60px; border-radius: 10px; border-style: solid; border-width: 1px; border-color:#929191;">
+          </a>
+          <div class="align-center">{{region.regionCode}}</div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

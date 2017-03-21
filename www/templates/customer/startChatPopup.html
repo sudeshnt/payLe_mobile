@@ -1,0 +1,43 @@
+<div>
+  <div class="row  zero-padding" style="display: inline-block; height: 40px;">
+    <a class="button button-clear button-positive icon ion-close-circled" ng-click="closePopup()" style="position: absolute; right: 0; top: 0; color: #1e5969;"></a>
+  </div>
+  <form class="form-horizontal" role="form" name="startChatForm">
+    <div class="form-group">
+      <span class="input-label full-width zero-padding">{{"MERCHANT_CODE" | translate}}<span class="required"> *</span></span>
+      <label class="item item-input" ng-class="((formSubmitted || startChatForm.merchantCode.$touched) && startChatForm.merchantCode.$error.required) ? 'input-required' : ''">
+        <input type="number" placeholder="{{'MERCHANT_CODE' | translate}}" ng-model="MerchantCode" name="merchantCode" merchant-available required >
+        <div style="padding-right:10px" ng-if="startChatForm.$pending.merchantExists" class="error">{{'CHECKING' | translate}}....</div>
+        <div class="success" style="padding-right:10px" ng-if="!startChatForm.merchantCode.$error.required && !startChatForm.$pending.merchantExists && !startChatForm.$error.merchantExists"><i class="ion-ios-checkmark" style="font-size: 30px;"></i></div>
+        <div class="error small-letters" style="padding-right:10px" ng-if="!startChatForm.merchantCode.$error.required && !startChatForm.$pending.merchantExists && startChatForm.$error.merchantExists">{{'MERCHANT_DOES_NOT_EXIST' | translate}}</div>
+      </label>
+    </div>
+    <div class="form-group">
+      <span class="input-label full-width zero-padding">{{"MERCHANT_EMAIL" | translate}}<span class="required"> *</span></span>
+      <label class="item item-input zero-padding" ng-class="((formSubmitted || startChatForm.email.$touched) && startChatForm.email.$error.required) ? 'input-required' : ''">
+        <input type="email"
+               style="padding:6px 0 5px 16px; height: 47px;"
+               placeholder="{{'MERCHANT_EMAIL' | translate}}"
+               ng-model="chatEmail"
+               name="email"
+               ng-disabled="startChatForm.merchantCode.$error.required || startChatForm.$pending.merchantExists || startChatForm.$error.merchantExists"
+               required>
+        <div class="success" style="padding-right:10px" ng-if="!startChatForm.email.$error.required && sender.senderEmail==chatEmail"><i class="ion-ios-checkmark" style="font-size: 30px;"></i></div>
+      </label>
+    </div>
+    <div class="error" style="margin:1%" ng-if="(formSubmitted || startChatForm.email.$touched) && startChatForm.email.$error.email && !startChatForm.email.$error.required">{{"ENTER_VALID_EMAIL" | translate}}</div>
+    <div class="error" style="margin:1%" ng-if="(formSubmitted || startChatForm.email.$touched) && !startChatForm.email.$error.email && !startChatForm.merchantCode.$error.required && !startChatForm.email.$error.required && sender.senderEmail!=chatEmail">{{'DOES_NOT_MATCH_WITH_MERCHANT_EMAIL' | translate}}</div>
+
+    <div class="form-group">
+      <span class="input-label full-width zero-padding">{{"YOUR_NAME" | translate}}<span class="required"> *</span></span>
+      <label class="item item-input" ng-class="((formSubmitted || startChatForm.name.$touched) && startChatForm.name.$error.required) ? 'input-required' : ''">
+        <input type="text" placeholder="{{'FIRST_NAME' | translate}}" ng-model="chatCustomerName" name="name" required>
+      </label>
+    </div>
+    <div class="align-center full-width" >
+      <a class="button button-block custom-height-button full-width"  ng-click="startChat(startChatForm.$valid,chatEmail,chatCustomerName,sender)" ng-disabled="startChatForm.merchantCode.$error.required || startChatForm.$pending.merchantExists || startChatForm.$error.merchantExists || startChatForm.email.$error.required || sender.senderEmail!=chatEmail" style="height: 30px; background-color: #1e5969; color:white;">
+        {{"START_CHAT" | translate}}
+      </a>
+    </div>
+  </form>
+</div>

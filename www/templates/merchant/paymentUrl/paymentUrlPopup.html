@@ -1,0 +1,43 @@
+<div>
+  <div class="row  zero-padding" style="display: inline-block; height: 40px;">
+    <a class="button button-clear button-positive icon ion-close-circled" ng-click="closePopup()" style="position: absolute; right: 0; top: 0; color: #1e5969;"></a>
+  </div>
+  <span class="input-label full-width zero-padding">{{'PAYMENT_URL' | translate}}</span>
+  <label class="item item-input">
+    <textarea rows="4" type="text" ng-model="paymentUrl"></textarea>
+  </label>
+
+  <div class="row " style="overflow-x: scroll">
+    <div class="col content-area sample-show-hide align-center" id="socialShare">
+      <div style="display: inline-flex;" >
+        <a class="col button icon social-share-pop-up-button ion-social-facebook " ng-click="shareViaFacebook()" style="background:#3e5b98;"></a>
+        <a class="col button icon social-share-pop-up-button ion-social-twitter" ng-click="shareViaTwitter()" style="background:#4da7de;"></a>
+        <a class="col button icon social-share-pop-up-button ion-android-textsms" ng-click="shareViaText()" style="background:#75c9c9;"></a>
+        <a class="col button icon social-share-pop-up-button ion-social-whatsapp" ng-click="shareViaWhatsApp()" style="background:#4dc944;"></a>
+        <a class="col button icon social-share-pop-up-button ion-more" ng-click="chooseAnAppToShare()" style="background:#d66666;"></a>
+      </div>
+    </div>
+  </div>
+  <div class="align-center full-width">
+    <a class="button button-block custom-height-button full-width"  ng-click="copyToClipboard()" style="height: 30px; background-color: #1e5969; color:white;">
+      {{'COPY_TO_CLIPBOARD' | translate}}
+    </a>
+  </div>
+</div>
+
+
+<!--<div>-->
+  <!--<div class="row  zero-padding" style="display: inline-block; height: 40px;">-->
+    <!--<a class="button button-clear button-positive icon ion-close-circled" ng-click="closePopup()" style="position: absolute; right: 0; top: 0; color: #1e5969;"></a>-->
+  <!--</div>-->
+  <!--<span class="input-label full-width zero-padding">{{'PAYMENT_URL' | translate}}</span>-->
+  <!--<label class="item item-input">-->
+    <!--<textarea rows="4" type="text" ng-model="paymentUrl"></textarea>-->
+  <!--</label>-->
+  <!--<div class="align-center long-width">-->
+    <!--<a class="button button-block custom-height-button full-width"  ng-click="copyToClipboard()" style="height: 30px; background-color: #1e5969; color:white;">-->
+      <!--{{'COPY_TO_CLIPBOARD' | translate}}-->
+    <!--</a>-->
+  <!--</div>-->
+<!--</div>-->
+

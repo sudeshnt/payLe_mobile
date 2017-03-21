@@ -1,0 +1,45 @@
+<ion-view>
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <ion-content style="margin-top: 88px;">
+    <div style="padding:5%;">
+      <div style="text-align: center; padding-bottom:40px; margin-top: 30px;"><img class="full-width" src="img/payleLogo.png" style="max-width: 300px;"></div>
+      <form  class="form-horizontal" role="form" name="merchantLoginForm">
+        <div class="list">
+          <div class="form-group" style="margin-bottom: 3px">
+            <label class="item item-input three-quarter-width" ng-class="((formSubmitted || merchantLoginForm.merchant_code.$touched) && merchantLoginForm.merchant_code.$error.required) ? 'input-required' : ''" style="height:35px; border-radius: 8px; " required>
+              <div class="input-icon">
+                <i class="ion-person"></i>
+                <input type="number" placeholder="{{'MERCHANT_CODE' | translate}}" ng-model="userLoginDetails.merchantCode" name="merchant_code" required>
+              </div>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="item item-input three-quarter-width" ng-class="((formSubmitted || merchantLoginForm.password.$touched) && merchantLoginForm.password.$error.required) ? 'input-required' : ''" style="height:35px; border-radius: 8px;" required>
+              <div class="input-icon">
+                <i class="ion-android-lock"></i>
+                <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="userLoginDetails.password" name="password" required>
+              </div>
+            </label>
+          </div>
+          <div class="align-center three-quarter-width">
+            <span class="error " ng-if="loginError" ng-hide="merchantRegistrationForm.iban.$error.required">{{loginError}}</span>
+          </div>
+          <div class="align-center">
+            <div class="align-center half-width">
+              <a  name="login" class="button button-block custom-height-button full-width" ng-click="authenticateUser(merchantLoginForm.$valid)" >
+                {{'LOGIN' | translate}}
+              </a>
+            </div>
+            <div class="align-center half-width">
+              <a class="button button-block button-assertive custom-height-button full-width" ng-click="openMerchantRegisterPage()">
+                {{'REGISTER' | translate}}
+              </a>
+            </div>
+            <a href="#/forgotPassword" style="color: #1e5969;">{{'FORGOT_PASSWORD' | translate}}</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+
+</ion-view>

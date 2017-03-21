@@ -1,0 +1,99 @@
+<ion-view cache-view="false">
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <!--<div class="row fixed-margin-above-75 align-center zero-padding" style="display: inline-block">-->
+    <!--<a class="button button-clear button-positive icon " ng-click="openCustomerChatList()" style="float:right"><span class="small-letters" style="vertical-align: text-bottom;">{{'START_CHAT_WITH_MERCHANT' | translate}}</span><img src="img/chat.png" style="padding: 2PX; margin-top: 7px;width: 35px;height: 35px;"></a>-->
+  <!--</div>-->
+  <ion-content class="fixed-margin-above-80" >
+    <div class="list list-inset fixed-margin-above" style="margin-top:0px">
+     <form class="form-horizontal" role="form" name="merchantDepositForm">
+       <div class="form-group">
+           <span class="input-label full-width">{{'MERCHANT_CODE' | translate}}<span class="required"> *</span></span>
+           <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.merchantCode.$touched) && merchantDepositForm.merchantCode.$error.required) ? 'input-required' : ''">
+                <!--<input type="number" placeholder="{{'MERCHANT_CODE' | translate}}" ng-model="deposit.merchantCode" name="merchantCode" required>-->
+               <input type="number"
+                      placeholder="{{'MERCHANT_CODE' | translate}}"
+                      ng-model="deposit.merchantCode"
+                      name="merchantCode"
+                      merchant-available
+                      required
+                      minlength="5"
+                      ng-model-options="{allowInvalid: true, debounce: 200, updateOn: 'default' }"
+               >
+               <div style="padding-right:10px" ng-if="merchantDepositForm.$pending.merchantExists" class="error small-letters">{{'CHECKING' | translate}}....</div>
+               <div class="success" style="padding-right:10px" ng-if="!merchantDepositForm.merchantCode.$error.required && !merchantDepositForm.merchantCode.$error.minlength && !merchantDepositForm.$pending.merchantExists && !merchantDepositForm.$error.merchantExists"><i class="ion-ios-checkmark" style="font-size: 25px;"></i></div>
+               <div class="error small-letters" style="padding-right:10px" ng-if="!merchantDepositForm.merchantCode.$error.required && !merchantDepositForm.$pending.merchantExists && merchantDepositForm.$error.merchantExists">{{'MERCHANT_DOES_NOT_EXIST' | translate}}</div>
+           </label>
+         <!--{{merchantDepositForm.merchantCode.viewValue}}-->
+       </div>
+       <div class="form-group">
+         <span class="input-label full-width">{{'AMOUNT' | translate}} <span class="required"> *</span></span>
+         <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.amount.$touched) && merchantDepositForm.amount.$error.required) ? 'input-required' : ''">
+           <div class="input-icon">
+             <i ng-if="!merchantDepositForm.merchantCode.$error.minlength && !merchantDepositForm.$pending.merchantExists && !merchantDepositForm.$error.merchantExists">{{merchantCurrencyCode}}</i>
+             <input type="number" ng-class="merchantCurrencyCode!=null && !merchantDepositForm.merchantCode.$error.minlength  && !merchantDepositForm.$pending.merchantExists && !merchantDepositForm.$error.merchantExists ?'padding-left-item-input':'padding-left-zero'" placeholder="{{'AMOUNT' | translate}}" ng-model="deposit.amount" name="amount" required>
+           </div>
+         </label>
+       </div>
+       <div class="form-group">
+         <span class="input-label full-width">{{'CUSTOMER_MOBILE' | translate}} <span class="required"> *</span></span>
+         <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.customerMobile.$touched) && merchantDepositForm.customerMobile.$error.required) ? 'input-required' : ''">
+           <input type="tel" placeholder="{{'CUSTOMER_MOBILE' | translate}}" ng-model="deposit.customerMobile" name="customerMobile" required>
+         </label>
+       </div>
+       <div class="form-group">
+         <span class="input-label full-width">{{'CUSTOMER_EMAIL' | translate}}</span>
+         <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.customerMobile.$touched) && merchantDepositForm.customerEmail.$error.email) ? 'input-required' : ''">
+           <input type="email" placeholder="{{'CUSTOMER_EMAIL' | translate}}" ng-model="deposit.customerEmail" name="customerEmail">
+         </label>
+         <div class="error small-letters" style="padding-right:10px" ng-if="((formSubmitted || merchantDepositForm.customerMobile.$touched) && merchantDepositForm.customerEmail.$error.email)">{{'INVALID_EMAIL' | translate}}</div>
+       </div>
+
+       <div class="form-group">
+         <span class="input-label full-width">{{'CARD_TYPE' | translate}} <span class="required"> *</span></span>
+         <ion-scroll zooming="true" direction="x" style="width: 100%; height: auto">
+           <div  class="row zero-padding" >
+             <div class="col zero-padding-sides"  ng-repeat="paymentGateway in paymentGateways">
+               <ion-radio ng-model="deposit.cardType" ng-value="paymentGateway.paymentGatewayId"><img ng-src="{{paymentGateway.imageUrl}}" style="height:60px; width: 100%; min-width: 60px; max-width: 60px;"></ion-radio>
+             </div>
+             <!--<div class="col zero-padding-sides"  ng-repeat="paymentGateway in paymentGateways">-->
+               <!--<ion-radio ng-model="deposit.cardType" ng-value="paymentGateway.paymentGatewayId"><img ng-src="{{paymentGateway.imageUrl}}" style="height:60px; width: 100%; min-width: 60px; max-width: 60px;"></ion-radio>-->
+             <!--</div>-->
+
+           </div>
+         </ion-scroll>
+         <!--<div  class="row zero-padding" >-->
+            <!--<div class="col zero-padding-sides" ng-repeat="paymentGateway in paymentGateways">-->
+              <!--<ion-radio ng-model="deposit.cardType" ng-value="paymentGateway.paymentGatewayId"><img ng-src="{{paymentGateway.imageUrl}}" style="height:35px; width: 100%; min-width: 35px; max-width: 35px;"></ion-radio>-->
+            <!--</div>-->
+         <!--</div>-->
+       </div>
+
+        <!--<div class="form-group">-->
+         <!--<span class="input-label full-width">{{'CARD_TYPE' | translate}} <span class="required"> *</span></span>-->
+         <!--<div  class="row zero-padding" style="overflow-x: scroll;">-->
+            <!--<div class="col zero-padding-sides">-->
+              <!--<ion-radio ng-model="deposit.cardType" ng-value="1"><img src="img/visamaster.png" class="full-width"></ion-radio>-->
+            <!--</div>-->
+            <!--<div class="col zero-padding-sides">-->
+              <!--<ion-radio ng-model="deposit.cardType" ng-value="2"><img src="img/visamaster.png" class="full-width"></ion-radio>-->
+            <!--</div>-->
+            <!--<div class="col zero-padding-sides">-->
+              <!--<ion-radio ng-model="deposit.cardType" ng-value="3"><img src="img/visamaster.png" class="full-width"></ion-radio>-->
+            <!--</div>-->
+          <!--</div>-->
+       <!--</div>-->
+       <div class="form-group">
+         <span class="input-label full-width">{{'COMMENTS' | translate}}</span>
+         <label class="item item-input">
+           <textarea rows="4" placeholder="{{'COMMENTS' | translate}}" ng-model="deposit.comment" name="comment"></textarea>
+         </label>
+       </div>
+       <div class="error" style="margin:1%" ng-if="errorDeposit">{{errorDeposit}}</div>
+       <div class="form-group">
+          <a class="button button-block custom-height-button" ng-click="merchantDeposit(merchantDepositForm.$valid)" ng-disabled="merchantDepositForm.$error.merchantExists">{{'NEXT' | translate}}</a>
+       </div>
+      </form>
+    </div>
+  </ion-content>
+
+</ion-view>

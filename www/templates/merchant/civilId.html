@@ -1,0 +1,75 @@
+<ion-view cache-view="false">
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <div class="row fixed-margin-above-80">
+    <span class="margin-lr-auto title-bar">{{title}}</span>
+  </div>
+  <ion-content class="fixed-margin-above-110">
+    <div class="list list-inset" style="margin-top: 0px">
+      <div class="row">
+        <div class="col align-center">
+          <div class="align-center">{{'FRONT_SIDE' | translate}}</div>
+          <div class="imagewrap">
+            <img ng-show="frontImgURI !== null" ng-src="{{frontImgURI}}" class="id-card" ng-click="viewImage('Front',frontImgURI)">
+            <img ng-show="frontImgURI === null" ng-src="img/ID-front.png" class="id-card">
+            <div class="row gallery-camera-button">
+              <a class="col button icon ion-upload social-share-button-black " ng-hide="frontUploadClicked" ng-click="uploadCLicked('front')" style="background:#e6e6e6;"></a>
+              <a class="col button icon ion-images social-share-button-black sample-show-hide" ng-show="frontUploadClicked" ng-click="takePicture2('front','gallery')" style="background:#e6e6e6;"></a>
+              <a class="col button icon ion-camera social-share-button-black sample-show-hide" ng-show="frontUploadClicked" ng-click="takePicture2('front','camera')" style="background:#e6e6e6;"></a>
+            </div>
+            <progress ng-if="progressFront!=0 && progressFront<100" max="100" value="{{ progressFront }}"> </progress>
+
+          </div>
+        </div>
+        <div class="col align-center">
+          <div class="align-center">{{'BACK_SIDE' | translate}}</div>
+          <div class="imagewrap">
+            <img ng-show="backImgURI !== null" ng-src="{{backImgURI}}" class="id-card" ng-click="viewImage('Back',backImgURI)">
+            <img ng-show="backImgURI === null" ng-src="img/ID-back.png" class="id-card">
+            <div class="row gallery-camera-button">
+              <a class="col button icon ion-upload social-share-button-black " ng-hide="backUploadClicked" ng-click="uploadCLicked('back')" style="background:#e6e6e6;"></a>
+              <a class="col button icon ion-images social-share-button-black sample-show-hide" ng-show="backUploadClicked" ng-click="takePicture2('back','gallery')" style="background:#e6e6e6;"></a>
+              <a class="col button icon ion-camera social-share-button-black sample-show-hide" ng-show="backUploadClicked" ng-click="takePicture2('back','camera')" style="background:#e6e6e6;"></a>
+            </div>
+
+              <progress ng-if="progressBack!=0 && progressBack<100" max="100" value="{{ progressBack }}"> </progress>
+
+            <!-- <input type="button" class="button2" value="Button 2" />-->
+          </div>
+        </div>
+      </div>
+      <div class="align-center">
+        <span class="error" ng-if="errorMessage" ng-hide="forgotPasswordForm.merchantCode.$error.required && forgotPasswordForm.email.$error.required">{{errorMessage}}</span>
+      </div>
+      <!--<div class="row border-thin">-->
+        <!--<span class="input-label full-width align-center font-bold" style="max-width: none;">{{'EXPIRY_DATE' | translate}} : {{expiryDate}}</span>-->
+      <!--</div>-->
+      <!--<div class="row" style="margin-top:10px;">-->
+        <!--<a class="button full-width custom-height-button" ng-click="openDatePicker()" style="background-color: #1e5969; color: white;">-->
+          <!--{{'SELECT_EXPIRY_DATE' | translate}}-->
+        <!--</a>-->
+      <!--</div>-->
+
+      <div class="form-group">
+        <span class="input-label full-width">{{'EXPIRY_DATE' | translate}} <span class="required"> *</span></span>
+        <label class="item item-input" ng-class="((formSubmitted || expiryDate.$touched) && expiryDate.$error.required) ? 'input-required' : ''">
+          <!--<input type="number" placeholder="Amount" ng-model="basicUserDetails.amount" name="amount" required>-->
+          <div class="input-icon" ng-click="openDatePicker()">
+            <i class="ion-android-calendar"></i>
+            <input type="text" placeholder="{{'SELECT_EXPIRY_DATE' | translate}}" ng-model="expiryDate" name="expiryDate" required>
+          </div>
+        </label>
+      </div>
+      <div class="card zero-margin" style="margin-top: 10px !important;" >
+        <div class="item item-text-wrap font-bold align-center opacity-65" ng-class="idStatus.class">
+          {{idStatus.text}}
+        </div>
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <a class="button full-width custom-height-button" ng-click="validateId()" >
+          {{'VALIDATE_ID' | translate}}
+        </a>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

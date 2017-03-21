@@ -1,0 +1,27 @@
+<ion-view cache-view="false">
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <div class="row fixed-margin-above-80">
+    <span class="margin-lr-auto title-bar">{{title}}</span>
+  </div>
+  <ion-content style="margin-top: 115px;">
+    <div class="list">
+      <a class="item item-avatar " ng-repeat="sender in senders"  ng-click="viewMessage(sender)"  style="padding-top: 4px;padding-bottom: 4px;padding-right: 4px;">
+        <img src="img\message_icon\m.png" style="margin-left: -12px;">
+        <h2 style="padding-left: 10px; padding-right: 15px;">{{sender.merchantName}} <span class="small-letters"> ( {{sender.merchantCode}} )</span></h2>
+        <p class="row">
+          <span class="col col-30">
+            {{sender.lastMessage.content.content.substring(0, 15)+' ...'}}
+          </span>
+          <span class="col col-40 ">
+            {{sender.lastMessage.dateTime}}
+          </span>
+          <span class="col col-20 align-center">
+            <div ng-if="sender.unreadMessageCount>0" class="opacity unread-message-count blink_me" style="width: 30px; height: 30px; float: right; line-height: 24px !important; padding: 2px 6px 16px !important; text-align: center;">
+              {{sender.unreadMessageCount}}
+            </div>
+          </span>
+        </p>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

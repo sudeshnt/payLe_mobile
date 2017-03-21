@@ -1,0 +1,53 @@
+<ion-view>
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <ion-content class="fixed-margin-above-88">
+    <div class="list list-inset fixed-margin-above">
+      <form class="form-horizontal" role="form" name="createBillForm">
+        <div class="form-group">
+          <span class="input-label full-width">{{'CUSTOMER_MOBILE' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || createBillForm.customerMobile.$touched) && createBillForm.customerMobile.$error.required) ? 'input-required' : ''">
+            <input type="tel" placeholder="{{'CUSTOMER_MOBILE' | translate}}" ng-model="bill.customerMobile" name="customerMobile" required>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'AMOUNT' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || createBillForm.amount.$touched) && createBillForm.amount.$error.required) ? 'input-required' : ''">
+            <div class="input-icon">
+              <i>{{merchantCurrencyCode}}</i>
+              <input
+                type="number"
+                ng-class="merchantCurrencyCode!=null?'padding-left-item-input':'padding-left-zero'"
+                placeholder="{{'AMOUNT' | translate}}"
+                ng-model="bill.amount"
+                name="amount"
+                required>
+            </div>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'CARD_TYPE' | translate}} <span class="required"> *</span></span>
+          <ion-scroll zooming="true" direction="x" style="width: 100%; height: auto">
+            <div  class="row zero-padding" >
+              <div class="col zero-padding-sides"  ng-repeat="paymentGateway in paymentGateways">
+                <ion-radio ng-model="bill.cardType" ng-value="paymentGateway.paymentGatewayId"><img ng-src="{{paymentGateway.imageUrl}}" style="height:60px; width: 100%; min-width: 60px; max-width: 60px;"></ion-radio>
+              </div>
+            </div>
+          </ion-scroll>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'COMMENTS' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || createBillForm.comment.$touched) && createBillForm.comment.$error.required) ? 'input-required' : ''">
+            <textarea rows="4" placeholder="{{'COMMENTS' | translate}}" ng-model="bill.comment" name="comment" style="padding: 10px;" required></textarea>
+          </label>
+        </div>
+        <div class="error" style="margin:1%" ng-if="errorMessage">{{errorMessage}}</div>
+        <div class="align-center full-width">
+          <a  class="button button-block custom-height-button full-width" ng-click="createBill(createBillForm.$valid)">
+            {{'CREATE_BILL' | translate}}
+          </a>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,41 @@
+<ion-view cache-view="false">
+  <ion-pane>
+    <ion-header-bar style="direction: ltr;height: 45px !important;">
+      <div>
+        <a class="button button-icon row" ng-click="goBack()"><img src="img/backButton.png" style="width:35px; height: 35px;"></a>
+      </div>
+      <h1 class="title" style="text-align: center">{{sender.senderName.split(" ")[0]}} <span class="small-letters">{{senderType}}</span><span class="small-letters" ng-if="senderType=='merchant'"> ( {{sender.senderCode}} )</span></h1>
+      <!--<div>-->
+        <!--<a class="button button-icon" ng-click="openGallery()" style=" position: absolute; right: 2px;" ng-if="senderType!='admin'"><img src="img/gallery.png" style="width:35px; height: 35px;"></a>-->
+      <!--</div>-->
+    </ion-header-bar>
+    <ion-content class="padding" delegate-handle="myScroll" ng-class="senderType!='admin'?'bottom-44':''">
+    <!--<ion-content class="padding" start-y="120">-->
+      <ol class="messages">
+        <li ng-repeat="message in messages[sender.senderCode].messages track by $index" ng-class="message.messageType">
+          <div>
+            <img class="profile-pic" ng-src="{{message.sender.profilePic}}" ng-class="message.messageType">
+            <p ng-if="message.content.type=='text'" ng-class="message.messageType">{{message.content.content}}<br>
+              <span class="sender">{{sender.senderName.split(" ")[0]}}</span>
+              <span style="float: right;">{{message.dateTime}}</span>
+            </p>
+            <img ng-if="message.content.type=='image'" ng-src="{{message.content.content}}" ng-class="message.messageType">
+          </div>
+        </li>
+      </ol>
+    </ion-content>
+    <ion-footer-bar class="bar-frosted item-input-inset message-footer" keyboard-attach ng-if="senderType!='admin'">
+      <!--<form name="chatMessage">-->
+        <label class="item-input-wrapper zero-padding" style="border-radius: 9px;">
+          <textarea data-ng-model="message" placeholder="Send {{senderType}} a message..." required minlength="1" maxlength="1500"></textarea>
+        </label>
+        <div class="footer-btn-wrap">
+          <a class="button button-icon icon ion-android-send footer-btn" ng-click="sendMessage(message)"
+             ng-disabled="!message || message === ''">
+          </a>
+        </div>
+      <!--</form>-->
+    </ion-footer-bar>
+  </ion-pane>
+</ion-view>
+

@@ -1,0 +1,127 @@
+<ion-view cache-view="false">
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <div class="row fixed-margin-above-80">
+    <span class="margin-lr-auto title-bar">{{title}}</span>
+  </div>
+  <ion-content class="fixed-margin-above-110">
+    <div class="list list-inset fixed-margin-above">
+      <form class="form-horizontal" role="form" name="merchantRegistrationForm">
+        <div class="form-group">
+          <span class="input-label full-width">{{'FIRST_NAME' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || merchantRegistrationForm.first_name.$touched) && merchantRegistrationForm.first_name.$error.required) ? 'input-required' : ''">
+            <input type="text" placeholder="{{'FIRST_NAME' | translate}}" ng-model="merchant.first_name" name="first_name"  required>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'MIDDLE_NAME' | translate}}</span>
+          <label class="item item-input" ng-class="((formSubmitted || merchantRegistrationForm.middle_name.$touched) && merchantRegistrationForm.middle_name.$error.required) ? 'input-required' : ''">
+            <input type="text" placeholder="{{'MIDDLE_NAME' | translate}}" ng-model="merchant.middle_name" name="middle_name" >
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'LAST_NAME' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || merchantRegistrationForm.last_name.$touched) && merchantRegistrationForm.last_name.$error.required) ? 'input-required' : ''">
+            <input type="text" placeholder="{{'LAST_NAME' | translate}}" ng-model="merchant.last_name" name="last_name"  required>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'BUSINESS_NAME' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || merchantRegistrationForm.businessName.$touched) && merchantRegistrationForm.businessName.$error.required) ? 'input-required' : ''">
+            <input type="text" placeholder="{{'BUSINESS_NAME' | translate}}" ng-model="merchant.businessName" name="businessName" required>
+          </label>
+        </div>
+        <!--<div class="form-group">-->
+          <!--<span class="input-label full-width">{{'REGION' | translate}} <span class="required"> *</span></span>-->
+          <!--<md-input-container class="custom-drop-down" ng-class="((formSubmitted || merchantRegistrationForm.region.$touched) && merchantRegistrationForm.region.$error.required) ? 'input-required' : ''">-->
+            <!--&lt;!&ndash;<label>State</label>&ndash;&gt;-->
+            <!--<md-select ng-model="merchant.region" name="region" ng-change="loadBanks(merchant.region)" required>-->
+              <!--&lt;!&ndash;<md-option><em>None</em></md-option>&ndash;&gt;-->
+              <!--<md-option ng-repeat="region in regions" ng-value="region.regionId" ng-selected="$index === 0">-->
+                <!--{{region.name}} ({{region.regionCode}})-->
+              <!--</md-option>-->
+            <!--</md-select>-->
+          <!--</md-input-container>-->
+        <!--</div>-->
+        <div class="form-group">
+          <span class="input-label full-width">{{'BANK' | translate}} <span class="required"> *</span></span>
+          <md-input-container class="custom-drop-down bank-dropdown" ng-class="((formSubmitted || merchantRegistrationForm.bank.$touched) && merchantRegistrationForm.bank.$error.required) ? 'input-required' : ''">
+            <!--<label>State</label>-->
+            <md-select ng-model="merchant.bankId" name="bank" required>
+              <!--<md-option><em>None</em></md-option>-->
+              <md-option ng-repeat="bank in banks" ng-value="bank.bankId" ng-selected="$index === 0">
+                {{bank.bankName}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <!--<div class="form-group">-->
+          <!--<span class="input-label full-width">{{'CURRENCY' | translate}} <span class="required"> *</span></span>-->
+          <!--<md-input-container class="custom-drop-down" ng-class="((formSubmitted || merchantRegistrationForm.currency.$touched) && merchantRegistrationForm.currency.$error.required) ? 'input-required' : ''">-->
+            <!--&lt;!&ndash;<label>State</label>&ndash;&gt;-->
+            <!--<md-select ng-model="merchant.currency" name="currency" required>-->
+              <!--&lt;!&ndash;<md-option><em>None</em></md-option>&ndash;&gt;-->
+              <!--<md-option ng-repeat="currency in currencies" ng-value="currency.currencyCode" ng-selected="$index === 0">-->
+                <!--{{currency.currencyName}} ( {{currency.currencyCode}} )-->
+              <!--</md-option>-->
+            <!--</md-select>-->
+          <!--</md-input-container>-->
+        <!--</div>-->
+        <div class="form-group">
+          <span class="input-label full-width">{{'IBAN' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || merchantRegistrationForm.iban.$touched) && merchantRegistrationForm.iban.$error.required) ? 'input-required' : ''">
+            <input type="text" placeholder="IBAN" name="iban" ng-model="merchant.iban" ng-iban countrycodecheck required/>
+          </label>
+          <span class="error" ng-if="merchantRegistrationForm.iban.$error.countrycodecheck" ng-hide="merchantRegistrationForm.iban.$pristine || merchantRegistrationForm.iban.$error.required">country code not supported</span>
+          <span class="error" ng-if="merchantRegistrationForm.iban.$invalid" ng-hide="merchantRegistrationForm.iban.$pristine || merchantRegistrationForm.iban.$error.countrycodecheck">Invalid IBAN</span>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'MOBILE' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || merchantRegistrationForm.mobile.$touched) && merchantRegistrationForm.mobile.$error.required) ? 'input-required' : ''">
+            <input type="tel" placeholder="{{'MOBILE' | translate}}" ng-model="merchant.mobile" name="mobile" required>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'EMAIL' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || merchantRegistrationForm.email.$touched) && (merchantRegistrationForm.email.$error.required || merchantRegistrationForm.email.$error.email)) ? 'input-required' : ''">
+            <input type="email" placeholder="{{'EMAIL' | translate}}" ng-model="merchant.email" name="email" required>
+          </label>
+          <div class="error small-letters" style="padding-right:10px" ng-if="((formSubmitted || merchantRegistrationForm.email.$touched) && merchantRegistrationForm.email.$error.email)">{{'INVALID_EMAIL' | translate}}</div>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'DATE_OF_BIRTH' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || merchantRegistrationForm.dob.$touched) && merchantRegistrationForm.dob.$error.required) ? 'input-required' : ''">
+            <!--<input type="number" placeholder="Amount" ng-model="basicUserDetails.amount" name="amount" required>-->
+            <div class="input-icon" ng-click="openDatePicker()">
+              <i class="ion-android-calendar"></i>
+              <input type="text" placeholder="{{'DATE_OF_BIRTH' | translate}}" ng-model="merchant.dateOfBirth" name="dob" required>
+            </div>
+          </label>
+        </div>
+
+        <span class="input-label full-width">{{'SHARE_SOCIAL' | translate}}</span>
+        <!--<ion-checkbox ng-model="merchant.isSharingSocialMediaAccounts" style="border-width: 0px;">{{'SHARE_SOCIAL' | translate}} ({{'OPTIONAL' | translate}})</ion-checkbox>-->
+        <!--<div class="form-group item" ng-show="merchant.isSharingSocialMediaAccounts">-->
+        <div class="form-group item">
+            <div class="input-icon">
+              <i class="ion-social-facebook" style="color: #3e5b98;"></i>
+              <input type="text" class="full-width border-bottom-social" placeholder="{{'ACCOUNT_NAME' | translate}}" ng-model="merchant.facebook">
+            </div>
+            <div class="input-icon">
+              <i class="ion-social-twitter" style="color:#4da7de;"></i>
+              <input type="text" class="full-width border-bottom-social" placeholder="{{'ACCOUNT_NAME' | translate}}" ng-model="merchant.twitter">
+            </div>
+            <div class="input-icon">
+              <i class="ion-social-instagram-outline" style="color: #ad9279"></i>
+              <input type="text" class="full-width border-bottom-social" placeholder="{{'ACCOUNT_NAME' | translate}}" ng-model="merchant.instagram">
+            </div>
+        <!--</label>-->
+        </div>
+        <div class="error" style="margin:1%" ng-if="errorMessage">{{errorMessage}}</div>
+        <div class="form-group">
+          <a class="button button-block custom-height-button" ng-click="registerMerchant(merchantRegistrationForm.$valid)" style="line-height: 25px;">{{'REGISTER' | translate}}</a>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,26 @@
+<ion-view>
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <div class="row fixed-margin-above-80">
+    <span class="margin-lr-auto title-bar">{{title}}</span>
+  </div>
+  <ion-content class="fixed-margin-above-110">
+    <div class="list list-inset">
+      <div class="row ">
+        <div class="col long-width align-center">
+          <a class="button button-block custom-height-button full-width margin-lr-auto"  ng-click="openDefaultURL()"
+             style="height: 109px; max-width: 270px; line-height: 109px; background-color: #1e5969; color:white;">
+            <i class="ion-link" style="font-size: 70px;"></i>
+          </a>
+          <span class="full-width">{{'DEFAULT_URL' | translate}}</span>
+        </div>
+        <div class="col long-width align-center">
+          <a class="button button-block custom-height-button full-width margin-lr-auto" ng-click="openCreateBillPage()"
+             style="height: 109px; max-width: 270px; line-height: 100px;  background-color: #1e5969; color:white;">
+            <i class="ion-clipboard" style="font-size: 70px;"></i>
+          </a>
+          <span class="full-width">{{'CREATE_BILL' | translate}}</span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

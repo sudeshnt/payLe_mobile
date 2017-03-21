@@ -1,0 +1,25 @@
+<ion-view view-title="Successful" cache-view="false">
+  <!--iphone <div class="item col-header zero-padding zero-margin">-->
+  <div class="item col-header zero-padding zero-margin" style="margin-top: 48px !important  ">
+    <div class="row ">
+      <div class="col col-40 align-center">{{'DATE' | translate}}</div>
+      <div class="col col-35 align-center">{{'AMOUNT' | translate}}</div>
+      <!--<div class="col col-15 align-center">{{'STATUS' | translate}}</div>-->
+      <div class="col col-10 align-center"></div>
+    </div>
+  </div>
+  <ion-content class="margin-top-45">
+    <ion-list>
+      <div class="item zero-padding zero-margin" ng-repeat="item in transactions track by $index">
+        <div class="row medium-letters" ng-class="$index%2==0?'odd-rows':'even-rows'">
+          <div class="col col-40 align-center">{{item.formattedDate}}&nbsp;</div>
+          <div class="col col-35 align-center" ng-if="type=='transactions'">{{item.currency}} {{item.fullAmount}}&nbsp;</div>
+          <div class="col col-35 align-center" ng-if="type=='withdrawals'">{{item.fromCurrency}} {{item.transactionAmount}}&nbsp;</div>
+          <!--<div class="col col-15 align-center">Accepted&nbsp;</div>-->
+          <div class="col col-10 align-center" ng-click="viewTransition(item)"><i class="icon ion-eye icon-accessory" style="font-size: 22px"></i></div>
+        </div>
+      </div>
+    </ion-list>
+    <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

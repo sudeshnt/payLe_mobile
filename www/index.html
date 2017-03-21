@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+      <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
+
+    <script type="text/javascript" charset="utf-8" src="js/PushNotification.js"></script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ng-cordova/dist/ng-cordova.js"></script></head>
+
+    <script src="cordova.js"></script>
+
+
+    <script src="lib/date-picker/ionic-datepicker.bundle.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+    <script src="lib/angular-translate/angular-translate.min.js"></script>
+
+    <link href="lib/ionic-contrib-frosted-glass/ionic.contrib.frostedGlass.css" rel="stylesheet">
+    <script src="lib/ionic-contrib-frosted-glass/ionic.contrib.frostedGlass.js"></script>
+    <!--uderscore-->
+    <script src="lib/underscore/underscore-min.js"></script>
+
+    <!-- Angular Material Dependencies -->
+    <script src="lib/angular-aria/angular-aria.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+
+    <!-- Angular Material Javascript now available via Google CDN; version 1.0.7 used here -->
+    <script src="lib/angular-material/angular-material.min.js"></script>
+
+    <!--ng-iban-custom-->
+    <script src="lib/ng-iban-custom/dist/ng-iban.js"></script>
+
+    <!--stripe-->
+    <script src="lib/angular-stripe-checkout/angular-stripe-checkout.js"></script>
+
+    <!--language files-->
+    <script src="js/common/lang_en.js"></script>
+    <script src="js/common/lang_ar.js"></script>
+    <!--<script src="js/common/publicFunctions.js"></script>-->
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers/homeController.js"></script>
+    <script src="js/controllers/customerControllers/customerHomeController.js"></script>
+    <script src="js/controllers/customerControllers/CustomerChatListController.js"></script>
+    <script src="js/controllers/merchantControllers/merchantHomeController.js"></script>
+    <!--Common controllers-->
+    <script src="js/common/commonMessage.js"></script>
+    <script src="js/controllers/chatController.js"></script>
+
+    <script type="text/javascript" src="js/pluggins/SocialSharing.js"></script>
+    <!--youtube embed-->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script type="text/javascript" src="lib/angular-youtube-embed/angular-youtube-embed.js"></script>
+    <!--mad5 encryption-->
+    <script src="lib/md5/angular-md5.js"></script>
+    <!--image uploader-->
+    <script src="lib/s3-image-uploader/dist/image-uploader.bundle.min.js"></script>
+    <!--request service-->
+    <script src="js/services/RequestsService.js"></script>
+    <script src="js/services/serviceLocator.js"></script>
+    <script src="js/services/httpService.js"></script>
+  </head>
+  <body ng-app="starter" ng-controller="initialController">
+
+    <ion-pane>
+      <!--<ion-nav-bar>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+      </ion-nav-bar>-->
+      <ion-content ng-class="[directions, visibleAdd!=undefined?'fixed-margin-bottom-54':'']">
+        <ion-nav-view>
+
+        </ion-nav-view>
+      </ion-content>
+      <!--<div class="bar bar-footer">
+      </div>-->
+      <div class="add-bar" ng-if="visibleAdd!=undefined">
+        <div style="text-align: center">
+          <a href="#" ng-click="openLink(visibleAdd.url)" >
+            <img ng-src="{{imageUriBase}}{{visibleAdd.img_url}}" style="max-height:65px; width: 100%; margin-bottom: -6px;">
+          </a>
+        </div>
+      </div>
+    </ion-pane>
+  </body>
+</html>

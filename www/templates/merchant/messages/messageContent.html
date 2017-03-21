@@ -1,0 +1,20 @@
+{{message}}
+<ion-view>
+  <pay-le-header></pay-le-header>
+  <ion-content class="fixed-margin-above-75">
+    <div class="card">
+      <div style="padding: 10px;">
+        <div>
+            <img src="img\message.png" class="opacity" style="height: 50px; vertical-align: middle;">
+          <span style="font-size: large; font-weight: 500;">{{message.sender}}
+          </span>
+          <span style="float: right; margin-top: 15px;">{{message.receivedAt}}</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-text-wrap">
+        {{message.content}}
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

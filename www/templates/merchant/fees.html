@@ -1,0 +1,49 @@
+<ion-view cache-view="false">
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <div class="row fixed-margin-above-80">
+    <span class="margin-lr-auto title-bar">{{title}}</span>
+  </div>
+  <ion-content class="fixed-margin-above-130" style="margin: 0px 1px 0px 1px; width:99%" >
+    <div class="row zero-padding zero-margin">
+      <div class="col col-25"></div>
+      <div class="col col-75 zero-padding">
+        <div class="row zero-padding">
+          <div class="col zero-padding">
+            <a class="button button-block custom-tab-button zero-margin" ng-class="isMerchantSelected" ng-click="toggleSelectedCommissionType('merchant')" style="line-height: 25px; border-radius: 0px;">{{'MERCHANT' | translate}}</a>
+          </div>
+          <div class="col zero-padding">
+            <a class="button button-block custom-tab-button zero-margin" ng-class="isCustomerSelected" ng-click="toggleSelectedCommissionType('customer')" style="line-height: 25px; border-radius: 0px;">{{'CUSTOMER' | translate}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row zero-padding zero-margin" ng-repeat="(key, value) in commissions track by $index" ng-class="$index%2==0?'odd-rows':'even-rows'">
+      <div class="col col-25 table-col align-center">{{key}}</div>
+      <div class="col col-75 table-col align-center">
+        <div class="row zero-padding">
+          <div class="col zero-padding align-center" >
+            {{value[selectedCommissionType].flatAmount}}
+          </div>
+          <div class="col zero-padding align-center" >
+            {{value[selectedCommissionType].percentage}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row zero-padding zero-margin">
+      <div class="col col-25"></div>
+      <div class="col col-75 zero-padding ">
+        <div class="row zero-padding" style="background-color: #1e5969; color: white;">
+          <div class="col zero-padding align-center">
+            {{"FLAT" | translate}}
+          </div>
+          <div class="col zero-padding align-center">
+            {{"PERCENTAGE" | translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

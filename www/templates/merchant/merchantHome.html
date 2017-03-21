@@ -1,0 +1,148 @@
+<ion-view cache-view="false">
+  <pay-le-header back="backNavigation"></pay-le-header>
+    <div class="row fixed-margin-above-75 align-center" ng-click="reload()"><div class="col font-bold">{{"MERCHANT_CODE" | translate}} : {{authenticatedUser.merchantCode}}</div> </div>
+    <div class="row">
+        <div class="balance-col"><div class="align-center font-bold" style="font-size: 10px;">{{"ACTUAL" | translate}}</div><label class="item item-input align-center balance-box"><span class="margin-auto">{{balance.currencyCode}} {{balance.actualBalance}}</span></label></div>
+        <div class="balance-col"><div class="align-center font-bold" style="font-size: 10px;">{{"ON_HOLD" | translate}}</div><label class="item item-input align-center balance-box"><span class="margin-auto">{{balance.currencyCode}} {{balance.onHold}}</span></label></div>
+        <div class="balance-col"><div class="align-center font-bold" style="font-size: 10px;">{{"AVAILABLE" | translate}}</div><label class="item item-input align-center balance-box"><span class="margin-auto">{{balance.currencyCode}} {{balance.availableBalance}}</span></label></div>
+    </div>
+    <ion-content style="margin-top: 167px">
+        <div class="row">
+            <div class="col">
+              <div class="card zero-margin-top" ng-click="openAllTransactionsPage()">
+                    <img src="img/transactions.png" class="full-width">
+                </div>
+              <div class="align-center">{{"TRANSACTIONS" | translate}}</div>
+            </div>
+            <div class="col">
+              <div class="card zero-margin-top" ng-click="openWithdrawalsPage()">
+                <img src="img/withdrawals.png" class="full-width">
+              </div>
+              <div class="align-center">{{"WITHDRAWALS" | translate}}</div>
+            </div>
+            <div class="col">
+              <div class="card zero-margin-top" ng-click="openRequestWithdrawPage()">
+                <img src="img/request-withdraw.png" class="full-width">
+              </div>
+              <div class="align-center small-letters" >{{"REQUEST_WITHDRAWALS" | translate}}</div>
+            </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card zero-margin-top" ng-click="openAccordian1(2)" ng-class="accordian1?'selected-card' : ''">
+            <img src="img/edit-profile.png" class="full-width">
+          </div>
+          <div class="align-center">{{"PROFILE" | translate}}</div>
+        </div>
+        <div class="col">
+          <div class="card zero-margin-top" ng-click="openMessages()">
+            <img src="img/messages.png" class="full-width">
+            <!--<div class="unread-message" ng-if="unreadMessageCount>0">-->
+              <!--<a class="button icon unread-message-count blink_me">-->
+                <!--<span>{{unreadMessageCount}}</span>-->
+              <!--</a>-->
+            <!--</div>-->
+            <span class="col col-30 align-center zero-padding">
+            <div ng-if="unreadMessageCount>0" class="opacity unread-message-count blink_me" style="width: 28px; height: 28px; float: right; line-height: 24px !important; padding: 2px 6px 16px !important; text-align: center; margin-top: -64px !important;">
+              {{unreadMessageCount}}
+            </div>
+          </span>
+          </div>
+          <div class="align-center">{{"MESSAGES" | translate}}</div>
+        </div>
+        <div class="col">
+          <div class="card zero-margin-top" ng-click="openPaymentUrlPage()">
+            <img src="img/payment-url.png" class="full-width">
+          </div>
+          <div class="align-center">{{"PAYMENT_URL" | translate}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <!--<ion-item class="card item-accordion zero-border zero-padding border-bottom-class" ng-show="accordian1">-->
+        <ion-item class="card item-accordion zero-border zero-padding zero-margin-top full-width" ng-show="accordian1">
+          <div class="row">
+            <!--<div class="col align-center border-top-class" ng-if="selectedType==1">
+              <div class="align-center small-letters">{{"ALL" | translate}}</div>
+              <div class="card-small half-width" ng-click="openAllTransactionsPage()">
+                <img src="img/transactions.png" class="full-width">
+              </div>
+            </div>-->
+            <!--<div class="col align-center border-top-thin" ng-if="selectedType==1">-->
+            <!--<div class="col align-center" ng-if="selectedType==1">
+              <div class="align-center small-letters">{{"WITHDRAWALS" | translate}}</div>
+              <div class="card-small half-width" >
+                <img src="img/withdrawals.png" class="full-width">
+              </div>
+            </div>-->
+            <!--<div class="col align-center" ng-if="selectedType==1">
+              <div class="align-center small-letters" >{{"REQUEST_WITHDRAWALS" | translate}}</div>
+              <div class="card-small half-width">
+                <img src="img/request-withdraw.png" class="full-width">
+              </div>
+            </div>-->
+            <div class="col align-center border-top-class" ng-if="selectedType==2">
+              <div class="card-small half-width" ng-click="openMerchantEdit()">
+                <img src="img/edit-profile.png" class="full-width">
+              </div>
+              <div class="align-center small-letters" >{{"EDIT_PROFILE" | translate}}</div>
+            </div>
+            <div class="col align-center" ng-if="selectedType==2">
+              <div class="card-small half-width" ng-click="openChangePassword()">
+                <img src="img/change-password.png" class="full-width">
+              </div>
+              <div class="align-center small-letters" >{{"CHANGE_PASSWORD" | translate}}</div>
+            </div>
+            <div class="col align-center" ng-if="selectedType==2">
+            </div>
+          </div>
+        </ion-item>
+      </div>
+        <div class="row">
+            <div class="col">
+              <div class="card zero-margin-top" ng-click="openFeesPage()">
+                    <img src="img/fees.png" class="full-width">
+              </div>
+              <div class="align-center">{{"FEES" | translate}}</div>
+            </div>
+            <div class="col">
+                <div class="card zero-margin-top" ng-click="opencivilIdPage()">
+                    <img src="img/civil-id.png" class="full-width">
+                </div>
+              <div class="align-center">{{"CIVIL_ID" | translate}}</div>
+            </div>
+            <div class="col">
+              <div class="card zero-margin-top" ng-click="openMediaPage()">
+                <img src="img/media.png" class="full-width">
+              </div>
+              <div class="align-center">{{"MEDIA" | translate}}</div>
+            </div>
+        </div>
+        <div class="row">
+            <!--<div class="col">
+                <div class="align-center">{{"GALLERY" | translate}}</div>
+                <div class="card zero-margin-top" ng-click="openAboutUs()">
+                    <img src="img/about-us.png" class="full-width">
+                </div>
+            </div>-->
+            <div class="col">
+                <div class="card zero-margin-top" ng-click="openAboutUs()">
+                    <img src="img/about-us.png" class="full-width">
+                </div>
+              <div class="align-center">{{"ABOUT_US" | translate}}</div>
+            </div>
+            <div class="col">
+              <div class="card zero-margin-top" ng-click="openGallery()">
+                <img src="img/gallery_icon.png" class="full-width" style="filter: opacity(75%); margin-top: 0%; padding-left: 16%; padding-right: 16%;">
+              </div>
+              <div class="align-center">{{"GALLERY" | translate}}</div>
+            </div>
+            <div class="col">
+              <div class="card zero-margin-top" ng-click="logout()">
+                <img src="img/logout.png" class="full-width">
+              </div>
+              <div class="align-center">{{"LOGOUT" | translate}}</div>
+            </div>
+            <!--<div class="col"></div>-->
+        </div>
+    </ion-content>
+</ion-view>

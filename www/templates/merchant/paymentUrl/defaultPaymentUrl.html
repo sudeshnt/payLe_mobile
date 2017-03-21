@@ -1,0 +1,38 @@
+<ion-view>
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <div class="row fixed-margin-above-80">
+    <span class="margin-lr-auto title-bar">{{title}}</span>
+  </div>
+  <ion-content class="fixed-margin-above-110">
+    <div class="list list-inset">
+      <!--<span class="input-label full-width">{{'PAYMENT_URL' | translate}}</span>-->
+      <label class="item item-input">
+        <textarea rows="4" type="text" ng-model="paymentUrl"></textarea>
+      </label>
+
+      <div class="row" style="overflow-x: scroll">
+        <div class="col content-area sample-show-hide align-center" ng-hide="!shareWith" id="socialShare">
+          <div style="display: inline-flex;"  >
+            <a class="col button icon social-share-button ion-social-facebook " ng-click="shareViaFacebook()" style="background:#3e5b98"></a>
+            <a class="col button icon social-share-button ion-social-twitter" ng-click="shareViaTwitter()" style="background:#4da7de"></a>
+            <a class="col button icon social-share-button ion-android-textsms" ng-click="shareViaText()" style="background:#75c9c9"></a>
+            <a class="col button icon social-share-button ion-social-whatsapp" ng-click="shareViaWhatsApp()" style="background:#4dc944"></a>
+            <a class="col button icon social-share-button ion-more" ng-click="chooseAnAppToShare()" style="background:#d66666"></a>
+          </div>
+        </div>
+      </div>
+      <div class="align-center">
+        <div class="align-center long-width">
+          <a class="button button-block custom-height-button full-width"  ng-click="clickShareWith()" style="height: 30px; background-color: #1e5969; color:white;">
+            <i class="ion-android-share-alt"></i> {{'SHARE_WITH' | translate}}
+          </a>
+        </div>
+        <div class="align-center long-width">
+          <a class="button button-block custom-height-button full-width"  ng-click="copyToClipboard()" style="height: 30px; background-color: #1e5969; color:white;">
+            {{'COPY_TO_CLIPBOARD' | translate}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
